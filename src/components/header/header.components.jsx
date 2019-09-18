@@ -2,6 +2,7 @@ import React from "react";
 import { auth } from "../../firebase/firebase.utils";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
+import { connect } from "react-redux";
 import "./header.styles.scss";
 
 const Header = ({ currentUser }) => {
@@ -30,5 +31,8 @@ const Header = ({ currentUser }) => {
     </div>
   );
 };
-
-export default Header;
+// high order functions are functions that take components as arguments and return a new supt up component
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+export default connect(mapStateToProps)(Header);
